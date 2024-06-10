@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block css %}
+  <style>
+    h3 {
+      color: crimson;
+    }
+  </style>
+{% endblock %}
+
+{% block main %}
+  {% if not mascota %}
+    <h3 class="text-center">Mascota no encontrada</h3>
+  {% else %}
+    <h3 class="text-center">Detalles de {{mascota.nombre}}</h3>
+    <div class="container">
+      <div class="row">
+        <div class="col-6 offset-3">
+          <p>{{mascota.nombre}} es un {{mascota.especie}}</p>
+          <h5>Vacunas</h5>
+          <ul>
+            {% for vac in mascota.vacunas %}
+              <li>{{vac}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  <script>
+    console.log("contenido escrito de la página de detalle")
+  </script>
+{% endblock %}

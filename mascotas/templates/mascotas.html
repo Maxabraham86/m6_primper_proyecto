@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  <h3 class="text-center">{{ titulo }}</h3>
+  <div class="row">
+    <div class="col-6">
+      <ul class="list-group mx-4">
+        {% for masc in mascotas %}
+          <li class="list-group-item">
+            <a href="/pets/{{masc.id}}">{{ masc.nombre }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-6">
+      <form class ="m-3" action="/pets/create" method ="post">
+        {% csrf_token %}
+        <h3>Ingrese Nueva Mascota</h3>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Nombre</label>
+          <input type="text" class="form-control" name="nombre">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" name="especie" class="form-label">especie</label>
+          <input type="text" class="form-control" >
+        </div>
+      
+        <button type="submit" class="btn btn-primary">agregar</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
